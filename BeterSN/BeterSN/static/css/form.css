@@ -1,0 +1,29 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+form input {
+    padding: 5px;
+    font-size: 16px;
+    background-color: rgb(27, 27, 27);
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+}
+
+form input:focus {
+    border-bottom: 3px solid rgb(255, 187, 0);
+    border-radius: 5px 5px 0px 0px;
+}
+
+form input.submit {
+    border: none;
+    color: rgb(27, 27, 27);
+    background-color: rgb(255, 187, 0);
+    font-weight: bold;
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(27, 27, 27);
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+}
+
+.root {
+    background-color: rgb(47, 0, 122);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.no-link {
+    color: rgb(27, 27, 27);
+    text-decoration: none;
+}

@@ -1,0 +1,13 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<main class="card">
+    <h3>Valideer BSN</h3>
+    <form method="POST">
+        <label for="bsn_input">Bsn</label>
+        <input type="text" name="bsn" id="bsn_input">
+
+        <input type="submit" value="Valideer" class="submit">
+    </form>
+</main>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<main class="card">
+    <h3>Genereer BSN</h3>
+    <form method="POST">
+        <label for="id_input">Burger id</label>
+        <input type="text" name="id" id="id_input">
+
+        <label for="usecase_input">Gebruiken voor</label>
+        <input type="text" name="usecase" id="usecase_input">
+
+        <label for="expiry_date_input">Afloop datum</label>
+        <input type="date" name="expiry_date" id="expiry_date_input">
+
+        <input type="submit" value="Genereer BSN" class="submit">
+    </form>
+</main>
+{% endblock content %}

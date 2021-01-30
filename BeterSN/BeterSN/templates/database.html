@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<main class="card">
+    <h1>Alle burgers</h1>
+    <div class="legend">
+        <span>id</span>
+        <span>Naam</span>
+        <span>Geboortedag</span>
+    </div>
+    {% for civ in civilians %}
+    <div class="civilian">
+        <span>{{ civ.id }}</span>
+        <span><b>{{ civ.name }}</b></span>
+        <span>{{ civ.birthday }}</span>
+    </div>
+    {% endfor %}
+</main>
+{% endblock content %}

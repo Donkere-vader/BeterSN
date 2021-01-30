@@ -1,0 +1,26 @@
+header {
+    background-color: rgb(27, 27, 27);
+    padding: 20px;
+}
+
+header * {
+    color: white;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0px 10px;
+}

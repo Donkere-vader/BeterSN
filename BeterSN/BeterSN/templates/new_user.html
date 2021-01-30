@@ -1,0 +1,16 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<main class="card">
+    <h3>Nieuwe burger</h3>
+    <form method="POST">
+        <label for="name_input">Naam</label>
+        <input type="text" name="name" id="name_input">
+
+        <label for="birthday_input">Geboortedag</label>
+        <input type="date" name="birthday" id="birthday_input" da>
+
+        <input type="submit" value="Maak gebruiker" class="submit">
+    </form>
+</main>
+{% endblock content %}
