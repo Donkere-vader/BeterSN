@@ -34,10 +34,6 @@ class Civilian(db.Model):
 
         self.key = Fernet.generate_key()
 
-    @property
-    def user_string(self) -> str:
-        return f"{self.id}{self.name}{self.birthdate}"
-
     def verify_bsn(self, bsn: str):
         f = Fernet(self.key)
         message = f.decrypt(bsn)
@@ -61,7 +57,7 @@ class Civilian(db.Model):
         }
         message = json.dumps(data).encode()
         f = Fernet(self.key)
-        print(message)
+
         encrypted_message = f.encrypt(message)
 
         new_bsn = Bsn(encrypted_message, self.id)
