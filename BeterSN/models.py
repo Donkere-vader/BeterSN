@@ -7,30 +7,32 @@ from datetime import datetime as dt
 
 
 class Bsn(db.Model):
+    """
+    Database model met de tijdelijke BSN's
+    """
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     bsn = db.Column(db.String)
 
     # relationships
     owner_id = db.Column(db.Integer, db.ForeignKey('civilian.id'))
 
-    def __repr__(self) -> str:
-        return f"<Bsn {(self.id, self.bsn)}>"
-
     def __init__(self, bsn: str, owner_id: int):
         self.bsn, self.owner_id = bsn, owner_id
 
 
 class Civilian(db.Model):
+    """
+    Database model van een burger
+    """
     id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String)
-    birthday = db.Column(db.Date)
     key = db.Column(db.LargeBinary)
 
     # relationships
     bsns = db.relationship('Bsn', backref="owner", lazy=True)
 
-    def __init__(self, name: str, birthday: dt):
-        self.name, self.birthday = name, birthday
+    def __init__(self, name: str):
+        self.name = name
 
         self.key = Fernet.generate_key()
 
@@ -41,16 +43,15 @@ class Civilian(db.Model):
             data = json.loads(message)
             data = {
                 **data,
-                "owner": {
-                    "name": self.name,
-                    "birthday": self.birthday.strftime("%Y-%m-%d")
+                "civilian": {
+                    "name": self.name
                 }
             }
             return data
         except json.decoder.JSONDecodeError:
             return False
 
-    def generate_key(self, usecase: str, expiry_date: dt) -> str:
+    def generate_bsn(self, usecase: str, expiry_date: dt) -> str:
         data = {
             "usecase": usecase,
             "expiry_date": expiry_date.strftime("%Y-%m-%d")

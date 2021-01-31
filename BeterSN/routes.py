@@ -29,11 +29,9 @@ def generate_bsn():
         expiry_date = dt.strptime(request.form['expiry_date'], "%Y-%m-%d")
 
         civ = Civilian.query.get(int(civ_id))
-        key = civ.generate_key(usecase, expiry_date)
+        temp_bsn = civ.generate_bsn(usecase, expiry_date)
 
-        return jsonify(
-            key=key.bsn
-        )
+        return f"<p><b>Tijdelijke BSN:</b></p><br/><span>{temp_bsn.bsn.decode()}</span>"
 
     return render_template("generate.html")
 
@@ -55,17 +53,12 @@ def verify_bsn():
 def new_civilian():
     if request.method == "POST":
         name = request.form['name']
-        birthday = dt.strptime(request.form['birthday'], "%Y-%m-%d")
 
-        new_civ = Civilian(name, birthday)
+        new_civ = Civilian(name)
         db.session.add(new_civ)
         db.session.commit()
 
-        return jsonify(
-            id=new_civ.id,
-            name=new_civ.name,
-            birthday=new_civ.birthday
-        )
+        return f"<span>Nieuwe burger '{new_civ.name}' met id {new_civ.id} aangemaakt.</span>"
 
     return render_template("new_user.html")
 
